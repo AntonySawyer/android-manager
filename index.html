@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Android Manager</title>
+      <link rel="stylesheet" href="style.css" />
+      <script type="text/javascript" src="android_manager.js"></script>
+   </head>
+<body id="main" onload="onInit()">
+<div class="container">
+      <header>
+           <ul class="nav navbar-nav">
+               <li><span class="logo">ANDROID MANAGER</span></li>
+               <li id="profile"></li>
+               <li><a href="index.html">Operator</a></li>
+               <li><a href="#job" onclick="another_section('job_container')">Jobs</a></li>
+               <li><a href="#android" onclick="another_section('android_container')">Androids</a></li>
+               <li><a href="#about" onclick="another_section('about')">About</a></li>
+               <li id="status"></li>
+           </ul>
+      </header>
+      <br>
+
+   <section id="login_section" class="active">
+      <div class="login_form">
+
+         <h1>Log In</h1>
+         <form name="login_form" id="login_form" class="login_form" method="POST">
+            <p>User:</p>
+            <input type="text" name="username" required>
+            <p>Password:</p>
+            <input type="password" name="password" required>
+            <br>
+            <p>HINT: click "DEMO DATA" and <br> you can use: root - 1111</p>
+            <input type="submit" value="Log In" onclick="check_user()">
+            <input type="submit" name="Registration" value="Registration" onclick="registration()">         
+            <br><br>
+            <input type="button" class="demo_data" value="DEMO DATA" onclick="demo_data()">
+         </form>
+      </div>
+
+   </section>
+
+   <section id="job_container" class="deactivate">
+      <div class="input">
+         <h1>Job list</h1>
+      <form name="job_list_input" id="job_list_input" class="job_list_input" method="post">
+         <input type="text" name="id" id="id" hidden disabled="true"/>
+         <p>Job name:</p>
+         <input type="text" id="job_name" name="job_name" pattern="[0-9a-zA-Z-]{2,16}" title="Alphanumeric, hyphen, 2-16 symbols" placeholder="Alphanumeric, hyphen, 2-16 symbols" autocomplete="off" required />
+         <span class="validity"></span>
+         <p>Job complexity:</p>
+         <input type="number" id="job_complexity" name="job_complexity" min="0" max="10" placeholder="0-10" autocomplete="off" required/>
+         <span class="validity"></span>
+         <p>Job description:</p>
+         <input type="text" id="job_description" name="job_description" pattern="[^]{0,255}" title="Max length: 255" placeholder="Max length: 255 symbols"  required></input>
+         <span class="validity"></span>
+         <br>
+         <br>
+         <input type="submit" name="Create" value="Create" onclick="check_fields('job', 'create')">
+         <input type="submit" name="Update" value="Update" onclick="check_fields('job', 'update')" title="Click on Job to select">
+         <input type="reset" name="Clear" value="Clear" onclick="updateForm('', '', '', ''), clear_select()">
+         <input type="submit" name="Delete" value="Delete" onclick="check_fields('job', 'delete')" title="Click on Job to select">
+      </form>
+      <h3>List of assigned androids:</h3>
+      <table id="list_of_assigned_androids">
+         <tr>
+            <th>Id</th>
+            <th>Android name</th>
+            <th>Job name</th>
+         </tr>
+      </table>
+      </div>
+      <div class="output" id="job_list_output">
+      </div>
+   </section>
+
+<section id="android_container" class="deactivate">
+
+      <div class="input">
+      <h1>Android list</h1>
+      <form name="android_list_input" id="android_list_input" method="post">
+         <input type="text" name="id" id="id" hidden disabled="true"/>
+         <input type="text" name="job_check" id="job_check" hidden disabled="true"/>
+         <p>Android name:</p>
+         <input type="text" id="android_name" pattern="[0-9a-zA-Z-]{5,24}" title="Alphanumeric, hyphen, 5-24 symbols" placeholder="Alphanumeric, hyphen, 5-24 symbols" required />
+         <span class="validity"></span>
+         <p>Android avatar:</p>
+         <input type="text" id="android_avatar" pattern="[^а-яА-Я]{3,}" placeholder="URL to jpg"/>
+         <p>Android skills:</p>
+         <input type="text" id="android_skills" title="Use ',' as delimeter" placeholder="Use ',' as delimeter" ></input>
+         <p>Android reliability</p>
+         <input type="number" id="android_reliability" min="0" max="10" disabled></input>
+         <p>Android status</p>
+         <input type="number" id="android_status" min="0" max="1" disabled></input>
+         <input type="button" id="android_status_repair" value="Repair" class="hidden_button" onclick="android_repair()" />
+         <p>Job for Android:</p>
+         <select id="android_in_job" name="android_in_job">
+            <option value="0">-----</option>
+         </select>
+         <br>
+         <br>
+         <input type="submit" name="Create" value="Create" onclick="check_fields('android', 'create')">
+         <input type="submit" name="Update" value="Update" onclick="check_fields('android', 'update')" title="Click on Android to select">         
+         <input type="reset" name="Clear" value="Clear" onclick="updateFormAndroid('', '', '', '', '', '', '', ''), clear_select()">
+         <input type="submit" name="Delete" value="Delete" onclick="check_fields('android', 'delete')" title="Click on Android to select">               
+      </form>
+      <h3>List of free androids:</h3>
+      <table id="list_of_free_androids">
+         <tr>
+            <th>Id</th>
+            <th>Android name</th>
+         </tr>
+      </table>      
+      </div>
+
+      <div class="output" id="android_list_output">
+      </div>
+</section>
+
+   <section id="about" class="deactivate">
+      <h1>Android [humanoid robot] Manager</h1>
+      <h3>Application goals</h3>
+      <ul>
+         <li>register Androids living among humans</li>
+         <li>assign Androids to a suitable job</li>
+      </ul>
+      <h3>Requirements</h3>
+      <p>Application work with Client-Side Storage: WebSQL and sessionStorage. All "fresh" browsers suport WebSQL. Javascript must be enabled.</p>      
+      <h3>On "Job" page</h6>
+      <ul>
+         <li>you can add new job</li>
+         <li>you can read full list of jobs</li>
+         <li>you can update job: select the one you want by click or tap and correct some information on left sidebar -> then click on "Update" button</li>
+         <li>you can delete job: select the one you want by click or tap and click on "Delete" button</li>
+         <li>you can see list of assigned androids</li>
+      </ul>
+      <h3>On "Android" page</h6>
+      <ul>
+         <li>you can add new android</li>
+         <li>you can read full list of android</li>
+         <li>you can update androids: select the one you want by click or tap and correct some information on left sidebar -> then click on "Update" button</li>
+         <li>reliability and status are unchangeable values. When reliability reaches 0 - status change to 0. When it happend - on left sidebar will appear button to repair Android (to change this values in default condition)</li>
+         <li>you can delete android: select the one you want by click or tap and click on "Delete" button</li>
+         <li>you can see list of free androids</li>
+      </ul>
+      <h3>And a bit more</h3>
+      <p>Androids without job, and jobs without androids marked by red color.</p>
+      <p>On "Operator" page you can create new user, or change current user.</p>
+      <p>All data will be delete when you clear browser-data. Also you can clear all site-data on Dev-tools (Application -> Clear storage</p>
+   </section>
+</div>
+   </body>
+</html>

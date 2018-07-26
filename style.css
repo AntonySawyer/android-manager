@@ -1,0 +1,200 @@
+body{
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: 12px;
+	color: #3a3a3a;
+}
+
+.deactivate { 
+	display: none; 
+}
+
+header {
+	z-index: 101;
+    top: 0;
+    width: 100%;
+}
+
+header>ul>li {
+	float: left;
+	padding: 3px;
+	list-style: none outside none;	
+}
+
+header>ul>li>a {
+	text-decoration: none;
+}
+
+header>ul>li>a:hover {
+	text-decoration: underline;
+}
+
+#status {
+	color: darkgrey;
+	float: right;
+	margin-right: 15px;
+}
+
+.logo {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+input[type=text],
+input[type=number],
+input[type=password] {
+    border: none;
+    border-bottom: 2px solid black;	
+	outline: none;
+}
+
+input:invalid + span:after {
+    content: '!!!';
+    color: red;
+    padding-left: 5px;
+}
+
+input:valid + span:after {
+    content: '+';
+    color: lightgreen;
+    padding-left: 5px;
+}
+
+#job_complexity:valid,
+input[type=text]:valid {
+	border-color: lightgreen; 
+}
+
+input[type=submit],
+input[type=button],
+input[type=reset] {
+    background-color: grey;
+    color: black;
+    border: 2px solid lightgreen;
+	opacity: 0.6;
+	transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    padding: 3px;
+    width: 60px;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover,
+input[type=reset]:hover {
+	opacity: 1;
+	color: white;
+}
+
+#android_status_repair {
+	margin-left: 20px;
+}
+
+input:disabled {
+	padding: 0;
+    width: 35px;
+    background: white;
+    text-align: center;
+    font-weight: 800;
+    border-bottom: 2px dotted lightgrey;
+}
+
+.default_list:hover {
+	border: 1px dotted black;
+}
+
+.default_list > h3 {
+	letter-spacing: 1px;
+	line-height: 0.3;
+	color: grey;
+	padding-left: 20px;
+}
+
+.default_list > p {
+	letter-spacing: 1px;
+	padding-left: 10px;
+}
+
+.default_list > hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.selected_list {
+	border: 1px solid grey;
+}
+
+.selected_list > h3 {
+	padding-left: 30px;
+	color: black;
+}
+
+.selected_list > p {
+	letter-spacing: 1px;
+	color: black;
+	padding-left: 15px;
+}
+
+.selected_list > hr {
+    border: 0;
+    height: 0;
+    border-bottom: 1px dotted darkgrey;
+}
+
+.input {  
+  position: absolute;
+  z-index: 101;
+  width: 300px;
+  float: left;
+  padding: 3px;
+}
+
+.output {
+	margin-top: 30px;
+	margin-left: 300px;
+}
+
+.login_form {
+	float: left;
+	margin: 5px;
+}
+
+p.current_android.null,
+p.current_job.null {
+	color: red;
+	content: 'Current job: ';
+}
+
+table#list_of_free_androids,
+table#list_of_assigned_androids {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+table#list_of_free_androids > tr > td,
+table#list_of_assigned_androids > tr > td {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
+table#list_of_free_androids > tr:hover,
+table#list_of_assigned_androids > tr:hover {
+	background-color: darkgrey;
+	color: white;
+}
+
+.hidden_button {
+	display: none;
+}
+
+.login_form > form > input[type=submit] {
+	width: 85px;
+	padding: 5px 3px;
+}
+
+.login_form > form > .demo_data {
+	width: 175px;
+	font-size: 16px;
+}
